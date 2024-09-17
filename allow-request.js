@@ -34,6 +34,6 @@ module.exports = function allow (req, u) {
     isPreflightPull(req, u) ||
     isPull(req, u) ||
     isPreflightPush(req, u) ||
-    isPush(req, u) ||
+    isPush(req, u)
   )
 }
