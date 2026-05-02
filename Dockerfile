@@ -1,9 +1,9 @@
-FROM node:8
-LABEL maintainer "William Hilton <wmhilton@gmail.com>"
-WORKDIR /srv
+FROM node:lts-alpine
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
 COPY . .
-RUN npm install
-EXPOSE 80
 ENV PORT=80
-CMD [ "npm", "start" ]
-
+EXPOSE 80
+USER node
+CMD ["npm", "start"]

@@ -7,6 +7,11 @@ const insecure_origins = (process.env.INSECURE_HTTP_ORIGINS || '').split(',')
 const middleware = require('./middleware.js')({ origin, insecure_origins })
 
 async function service (req, res) {
+  let preU = url.parse(req.url, true)
+  if (preU.pathname === '/up') {
+    return send(res, 200, 'OK')
+  }
+
   middleware(req, res, () => {
     let u = url.parse(req.url, true)
 
