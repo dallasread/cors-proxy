@@ -118,6 +118,9 @@ module.exports = ({ origin, insecure_origins = [], authorization = noop } = {}) 
 
     let p = u.path
     let parts = p.match(/\/([^\/]*)\/(.*)/)
+    if (!parts) {
+      return next()
+    }
     let pathdomain = parts[1]
     let remainingpath = parts[2]
     let protocol = insecure_origins.includes(pathdomain) ? 'http' : 'https'
